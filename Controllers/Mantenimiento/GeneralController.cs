@@ -4,7 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Api.Data.Interface;
 using Api.Domain.Mantenimiento;
-
+using Api.ReadRepository.Interface.Mantenimiento;
 
 namespace API.Controllers.Mantenimiento
 {
@@ -16,17 +16,20 @@ namespace API.Controllers.Mantenimiento
 
         private readonly IRepository<ValorTabla> _repoValorTabla;
         private readonly IRepository<Estado> _repoestado;
+        private readonly IClienteReadRepository _repoReadCliente;
+
         private readonly IMapper _mapper;
 
         public GeneralController(
          IRepository<ValorTabla> repoValorTabla
         , IRepository<Estado> repoestado
-        ,IMapper mapper
-        )
+        , IMapper mapper
+        , IClienteReadRepository repoReadCliente)
         {
             _repoValorTabla = repoValorTabla;
             _repoestado = repoestado;
             _mapper = mapper;
+            _repoReadCliente = repoReadCliente;
         }
         [HttpGet("GetAllEstados")]
         public async Task<IActionResult> GetAllEstados(int TablaId)
@@ -41,6 +44,7 @@ namespace API.Controllers.Mantenimiento
            var result = await _repoValorTabla.GetAll(x=>x.TablaId == TablaId);
            return Ok(result);
         }
+       
 
     }
 }

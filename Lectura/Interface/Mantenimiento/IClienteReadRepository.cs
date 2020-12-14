@@ -9,12 +9,8 @@ namespace Api.ReadRepository.Interface.Mantenimiento
     {
 
          Task<IEnumerable<GetAllClientesResult>> GetAllClientes(String Criterio);
-        //  Task<IEnumerable<GetAllDireccionesResult>> GetAllDirecciones(int ClienteId);
+         Task<IEnumerable<GetAllUbigeoResult>> GetAllUbigeo(String Criterio);
 
-        //  Task<IEnumerable<GetAllDepartamentos>> GetAllDepartamentos();
-        //  Task<IEnumerable<GetAllProvincias>> GetAllProvincias(int DepartamentoId);
-        //  Task<IEnumerable<GetAllDistritos>> GetAllDistritos(int ProvinciaId);
-        //  Task<IEnumerable<Proveedor>> GetAllProvedores();
 
 
 

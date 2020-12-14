@@ -90,7 +90,8 @@ namespace CargaClic.API.Controllers
                 if (item.Nivel=="1")
                 {
                     item.submenu = new List<MenuResult>();
-                    item.submenu.AddRange(_menuAux.Where(x=>x.CodigoPadre == item.Codigo && x.Nivel == "2" && x.srp_seleccion=="1").OrderBy(x=>x.Orden).ToList());
+                    item.Class = "sub";
+                    item.submenu.AddRange(_menuAux.Where(x=>x.CodigoPadre == item.Codigo && x.Nivel == "2" && x.srp_seleccion=="1" ).OrderBy(x=>x.Orden).ToList());
                     if(final.Where(x=>x.Id == item.Id).SingleOrDefault() == null)
                     final.Add(item);
                 }

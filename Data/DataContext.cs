@@ -2,6 +2,8 @@
 using Api.Data.Mappings.Mantenimiento;
 using Api.Domain.Mantenimiento;
 using Api.Domain.Seguridad;
+using API.Data.Mappings.Seguimiento;
+using API.Domain.Seguimiento;
 using CargaClic.Data.Mappings.Seguridad;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,6 +20,14 @@ namespace Api.Data
         public DbSet<RolPagina> RolPaginas {get;set;}
         public DbSet<Cliente> Cliente {get;set;}
         public DbSet<ValorTabla> ValorTabla {get;set;}
+        public DbSet<Destinatario> Destinatarios {get;set;}
+
+
+        public DbSet<Estado> Estados {get;set;}
+        public DbSet<OrdenServicio> OrdenServicios {get;set;}
+        public DbSet<Carga> Cargas {get;set;}
+        public DbSet<GuiaRemisionRemitente> guiaRemisionRemitentes {get;set;}
+    
         
         protected override void OnModelCreating(ModelBuilder builder)
         {
@@ -27,7 +37,13 @@ namespace Api.Data
             builder.ApplyConfiguration(new RolPaginaConfiguration());
 
             builder.ApplyConfiguration(new ClienteConfiguration());
+            builder.ApplyConfiguration(new EstadoConfiguration());
+            builder.ApplyConfiguration(new DestinatarioConfiguration());
+            
             builder.ApplyConfiguration(new ValorTablaConfiguration());
+            builder.ApplyConfiguration(new OrdenServicioConfiguration());
+            builder.ApplyConfiguration(new CargaConfiguration());
+            builder.ApplyConfiguration(new GuiaRemisionRemitenteConfiguration());
 
             base.OnModelCreating(builder);
 

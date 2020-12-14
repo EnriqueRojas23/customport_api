@@ -29,7 +29,9 @@ using Api.Domain.Mantenimiento;
 using Api.Repository.Interface.Mantenimiento;
 using Api.Repository.Repository.Mantenimiento;
 using Api.ReadRepository.Interface.Mantenimiento;
-
+using API.Lectura.Interface.Seguimiento;
+using API.Lectura.Repository.Seguimiento;
+using API.Escritura.Interface.Seguimiento;
 
 namespace CargaClic.API
 {
@@ -63,6 +65,9 @@ namespace CargaClic.API
              services.AddScoped<ISeguridadRepository,SeguridadRepository>();
              services.AddScoped<IClienteReadRepository,ClienteReadRepository>();
              services.AddScoped<IClienteRepository,ClienteRepository>();
+             services.AddScoped<ISeguimientoReadRepository,SeguimientoReadRepository>();
+             services.AddScoped<ISeguimientoRepository,SeguimientoRepository>();
+             
 
              
              
@@ -70,6 +75,7 @@ namespace CargaClic.API
              services.AddScoped< IRepository<ValorTabla>, Repository<ValorTabla>>();
              services.AddScoped< IRepository<Cliente>, Repository<Cliente>>();
              services.AddScoped< IRepository<Estado>, Repository<Estado>>();
+             services.AddScoped< IRepository<Destinatario>, Repository<Destinatario>>();
              
              
              

@@ -41,5 +41,18 @@ namespace Api.Repository.Repository.Mantenimiento
                 return result;
             }
         }
+
+        public async Task<IEnumerable<GetAllUbigeoResult>> GetAllUbigeo(string Criterio)
+        {
+            var parametros = new DynamicParameters();
+            parametros.Add("criterio", dbType: DbType.String, direction: ParameterDirection.Input, value: Criterio);
+            using (IDbConnection conn = Connection)
+            {
+                string sQuery = "[seguimiento].[pa_listarubigeo]";
+                conn.Open();
+                var result = await conn.QueryAsync<GetAllUbigeoResult>(sQuery, parametros ,commandType:CommandType.StoredProcedure);
+                return result;
+            }
+        }
     }
 }

@@ -18,18 +18,20 @@ namespace CargaClic.API.Controllers.Mantenimiento
     public class ClienteController : ControllerBase
     {
         private readonly IRepository<Cliente> _repoCliente;
+        private readonly IRepository<Destinatario> _repoDestinatario;
         private readonly IClienteRepository _repository;
         private readonly IClienteReadRepository _read_repository;
         private readonly IMapper _mapper;
 
         public ClienteController(IRepository<Cliente> repoCliente,
          IClienteRepository repository_cliente, IClienteReadRepository read_repository
-         ,IMapper mapper)
+         , IMapper mapper, IRepository<Destinatario> repoDestinatario)
         {
             _repoCliente = repoCliente;
             _repository = repository_cliente;
             _read_repository = read_repository;
             _mapper = mapper;
+            _repoDestinatario = repoDestinatario;
         }
         [HttpGet("Get")]
         public async Task<IActionResult> Get(int id)
@@ -85,6 +87,18 @@ namespace CargaClic.API.Controllers.Mantenimiento
              client.fechacreacion = DateTime.Now;
              await _repoCliente.SaveAll();
              return Ok();
+        }
+        [HttpGet("GetAllUbigeo")]
+        public async Task<IActionResult> GetAllUbigeo(string criterio)
+        {
+           var result = await  _read_repository.GetAllUbigeo(criterio);
+           return Ok(result);
+        }
+        [HttpGet("GetAllDestinatario")]
+        public async Task<IActionResult> GetAllDestinatario(int idcliente)
+        {
+           var result = await  _repoDestinatario.Get(x => x.idcliente == idcliente);
+           return Ok(result);
         }
         
         
